@@ -179,7 +179,7 @@ namespace all_tests
 			struct exam { std::string name; int points, grade; };
 			std::vector<exam> v{ {"Pero", 55, 2}, {"Iva", 93, 5}, {"Marko", 89, 5} };
 			// TODO: sort vector by grade, then by points
-			std::sort(v.begin(), v.end(), [](exam& a, exam& b) {
+			std::sort(v.begin(), v.end(), [](const exam& a, const exam& b) {
 				if (a.grade == b.grade)
 					return a.points > b.points;
 				return a.grade > b.grade;
@@ -217,11 +217,11 @@ namespace all_tests
 		}
 		TEST_METHOD(test_12)
 		{
-			std::vector<int> atp_points{ 8445, 7480, 6220, 5300, 5285 };
+			std::vector<int> atp_points{ 8445, 7480, 6220, 6219, 5300, 5290, 5285 };
 			// the most interesting match is the one with the smallest difference
 			auto smallest_difference = abs(* std::max_element(atp_points.begin() + 1, (std::adjacent_difference(atp_points.begin(), atp_points.end(), atp_points.begin()))));// TODO: 
 
-			Assert::AreEqual(15, smallest_difference);
+			Assert::AreEqual(1, smallest_difference);
 		}
 	};
 }
